@@ -1,0 +1,12 @@
+11
+Dacia Logan  2020 0
+Volkswagen Golf  2019 0
+BMW X5  2021 0
+Audi A4  2018 0
+Mercedes-Benz C-Class  2022 0
+Ford Focus  2020 0
+Toyota Corolla  2021 0
+Honda Civic  2019 0
+Skoda Octavia  2018 0
+Peugeot 308 2010 0
+Porsche 911 2024 0
