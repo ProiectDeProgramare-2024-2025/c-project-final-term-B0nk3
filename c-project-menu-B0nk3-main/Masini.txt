@@ -1,14 +1,15 @@
-13
-Dacia Logan  2020 0
-Volkswagen Golf  2019 0
-BMW X5  2021 0
-Audi A4  2018 0
-Mercedes-Benz C-Class  2022 0
-Ford Focus  2020 0
-Toyota Corolla  2021 0
-Honda Civic  2019 0
-Skoda Octavia  2018 0
-Peugeot 308 2010 0
-Porsche 911 2024 0
-Mercedes 2008 0
-Toyota GR86 2023 0
+14
+Dacia Logan 2020 1600 0
+Volkswagen Golf 2019 1600 0
+BMW X5 2021 3000 0
+Audi A4 2018 2000 0
+Ford Focus 2020 1600 0
+Toyota Corolla 2021 1800 0
+Honda Civic 2019 1600 0
+Skoda Octavia 2018 1600 0
+Peugeot 308 2010 1400 0
+Mercedes C200 2008 1800 0
+Toyota GR86 2023 2400 0
+Peugeot 407 2010 2000 0
+Dacia Logan 2008 1400 0
+Skoda Fabia 2019 1400 0
