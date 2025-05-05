@@ -14,7 +14,6 @@ int numarMasini = 0;
 void citireMasiniDinFisier() {
     FILE *fisier = fopen("Masini.txt", "r");
     if (fisier == NULL) {
-        printf("Fisierul Masini.txt nu exista. Se creaza unul nou.\n");
         fisier = fopen("Masini.txt", "w");
         fprintf(fisier, "0\n");
         fclose(fisier);
@@ -28,7 +27,7 @@ void citireMasiniDinFisier() {
     for (int i = 0; i < numarMasini; i++) {
         fgets(masini[i].nume, 100, fisier);
         masini[i].nume[strcspn(masini[i].nume, "\n")] = 0;
-        
+
         char buffer[150];
         strcpy(buffer, masini[i].nume);
         char *p = strrchr(buffer, ' ');
@@ -82,6 +81,7 @@ void afiseazaMasiniDisponibile() {
     printf("\nApasati ENTER pentru a continua...");
     getchar();
 }
+
 void afiseazaMasiniInchiriate() {
     system("cls");
     printf("\nMasini inchiriate:\n");
@@ -93,19 +93,40 @@ void afiseazaMasiniInchiriate() {
     printf("\nApasati ENTER pentru a continua...");
     getchar();
 }
+
 void inchiriereMasina() {
     system("cls");
-    afiseazaMasiniDisponibile();
+
+    int map[100];
+    int contor = 0;
+
+    printf("\nMasini disponibile:\n");
+    for (int i = 0; i < numarMasini; i++) {
+        if (masini[i].inchiriata == 0) {
+            contor++;
+            printf("\033[0;33m%d. \033[0m \033[1;32m%s \033[0m \033[1;35m(%d) \033[0m\n", contor, masini[i].nume, masini[i].an);
+            map[contor] = i;
+        }
+    }
+
+    if (contor == 0) {
+        printf("Nu exista masini disponibile.\n");
+        printf("\nApasati ENTER pentru a continua...");
+        getchar();
+        return;
+    }
+
     printf("\nIntroduceti numarul masinii pe care doriti sa o inchiriati: ");
     int alegere;
     scanf("%d", &alegere);
     getchar();
 
-    if (alegere < 1 || alegere > numarMasini || masini[alegere - 1].inchiriata == 1) {
-        printf("Optiune invalida sau masina deja inchiriata!\n");
+    if (alegere < 1 || alegere > contor) {
+        printf("Optiune invalida!\n");
     } else {
-        masini[alegere - 1].inchiriata = 1;
-        printf("Ati inchiriat masina: %s (%d)\n", masini[alegere - 1].nume, masini[alegere - 1].an);
+        int indexReal = map[alegere];
+        masini[indexReal].inchiriata = 1;
+        printf("Ati inchiriat masina: %s (%d)\n", masini[indexReal].nume, masini[indexReal].an);
         salveazaMasiniInFisier();
     }
 
@@ -115,20 +136,41 @@ void inchiriereMasina() {
 
 void returnareMasina() {
     system("cls");
-    afiseazaMasiniInchiriate();
+
+    int map[100];
+    int contor = 0;
+
+    printf("\nMasini inchiriate:\n");
+    for (int i = 0; i < numarMasini; i++) {
+        if (masini[i].inchiriata == 1) {
+            contor++;
+            printf("\033[0;33m%d. \033[0m \033[1;32m%s \033[0m \033[1;35m(%d) \033[0m\n", contor, masini[i].nume, masini[i].an);
+            map[contor] = i;
+        }
+    }
+
+    if (contor == 0) {
+        printf("Nu exista masini inchiriate.\n");
+        printf("\nApasati ENTER pentru a continua...");
+        getchar();
+        return;
+    }
+
+    printf("\nIntroduceti numarul masinii pe care doriti sa o returnati: ");
     int alegere;
     scanf("%d", &alegere);
     getchar();
 
-    if (alegere < 1 || alegere > numarMasini || masini[alegere - 1].inchiriata == 0) {
-        printf("Optiune invalida sau masina nu este inchiriata!\n");
+    if (alegere < 1 || alegere > contor) {
+        printf("Optiune invalida!\n");
     } else {
-        masini[alegere - 1].inchiriata = 0;
-        printf("Ati returnat masina: %s (%d)\n", masini[alegere - 1].nume, masini[alegere - 1].an);
+        int indexReal = map[alegere];
+        masini[indexReal].inchiriata = 0;
+        printf("Ati returnat masina: %s (%d)\n", masini[indexReal].nume, masini[indexReal].an);
         salveazaMasiniInFisier();
     }
 
-    printf("\nIntroduceti numarul masinii returnate:");
+    printf("\nApasati ENTER pentru a continua...");
     getchar();
 }
 
